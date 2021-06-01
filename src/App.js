@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter , 
+  Route ,
+
+} from "react-router-dom"
+import Home from './pages/home/Home';
+import Allmovie from './pages/allmovies/Allmovie';
+import OneMovie from './pages/onemovie/OneMovie';
+import Footer from './components/Footer';
+import {useEffect, useState} from "react"
 
 function App() {
+
+
+
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+  
+      {/* router  */}
+
+    <Route exact path="/" component={Home} />
+    <Route path="/allmovie" component={Allmovie} />
+    <Route path="/OneMovie" component={OneMovie} />
+
+      {/* footer  */}
+   
+      <Footer />
+
+     </BrowserRouter>
   );
 }
 
