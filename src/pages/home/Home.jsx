@@ -7,9 +7,7 @@ export default function Home() {
         <div>
             {/* slidShow */}
             <SlidShow />
-
-            <h2 style={{textAlign: 'center'}}> PAPUALER MOVIES </h2>
-
+            <h1 style={{textAlign: 'center' , padding : 20 , color: '#F5CB5C' , fontFamily :"Helvetica"}}> POPULAR MOVIES </h1>
             <MovieList />
 
         </div>
