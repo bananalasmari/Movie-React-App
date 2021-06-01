@@ -5,7 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import TheatersIcon from '@material-ui/icons/Theaters';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
-import {useHistory} from 'react-router-dom'
+import {useHistory  } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +23,7 @@ export default function Footer() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <footer style ={{ position: "fixed" , bottom: 0  , width: "100%"}}>
+    <footer style ={{ position: "fixed" , bottom: 0  , width: "100%"  , zIndex: 9999}}>
 
 
     <BottomNavigation

@@ -1,10 +1,18 @@
 import React from 'react'
+import { MovieList } from './MovieList'
+import { SlidShow } from "./SlidShow"
 
 export default function Home() {
     return (
         <div>
-                        <h1> Home Page </h1>
+            {/* slidShow */}
+            <SlidShow />
+
+            <h2 style={{textAlign: 'center'}}> PAPUALER MOVIES </h2>
+
+            <MovieList />
 
         </div>
     )
 }
+
