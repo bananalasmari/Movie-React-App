@@ -22,11 +22,11 @@ function App() {
       {/* router  */}
 
     <Route exact path="/" component={Home} />
-    <Route path="/allmovie" component={Allmovie} />
-    <Route path="/OneMovie" component={OneMovie} />
+    <Route exact path="/allmovie" component={Allmovie} />
+    <Route exact path="/allmovie/:id" component={OneMovie} />
 
       {/* footer  */}
-   
+   <div style ={{height : 56}}></div>
       <Footer />
 
      </BrowserRouter>
