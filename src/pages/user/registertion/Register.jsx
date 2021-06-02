@@ -76,7 +76,6 @@ const userOnsubmitHandler = (e) => {
         setMessage(data.data.message)
         setSuccess(true)
         console.log(data)
-
         setTimeout(() => history.push('/login') , 2000)
         
     }).catch(error => {
