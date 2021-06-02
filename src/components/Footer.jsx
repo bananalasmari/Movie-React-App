@@ -57,7 +57,15 @@ export default function Footer() {
 
       />} />
 
+     { true ?
+    <BottomNavigationAction 
+      classes={classes}
+      label="login" 
+      onClick = {()=> history.push('/login')}
+      icon={<PersonIcon 
+        style={{fill: "#F5CB5C"}}
 
+      />} /> : 
 
 
       <BottomNavigationAction
@@ -67,7 +75,10 @@ export default function Footer() {
       icon={<PersonIcon 
        style={{fill: "#F5CB5C"}}
       />} />
+}
     </BottomNavigation>
+
+    
 
 
     </footer>
