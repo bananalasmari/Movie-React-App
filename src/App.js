@@ -15,6 +15,7 @@ import Register from './pages/user/registertion/Register';
 import { isExpired, decodeToken } from "react-jwt";
 import Profile from './pages/user/profile/Profile';
 import Protect from './components/Protect';
+import AllUsers from './components/AllUsers';
 function App() {
   const [user , setUser] = useState({})
   const [isLogin , setIsLogin] = useState(false)
@@ -53,9 +54,13 @@ console.log(user)
 
     <Route exact path="/register" component={Register} />
 
+
     <Protect component={Profile} path={"/profile"} isLogin ={isLogin} user ={user} loginFunction={loginFunction} />
+
     <Protect component={Allmovie} path={"/allmovie"} isLogin ={isLogin} />
  
+ <Route exact path="/allusers" 
+ render={()=> <AllUsers /> } />
 
 
     </Switch>

@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 
 
 
-export default function Profile({user ,loginFunction }) {
+export default function Profile({user ,loginFunction , test }) {
     const history = useHistory()
 
     const logOut = () => {
@@ -15,6 +15,8 @@ export default function Profile({user ,loginFunction }) {
         history.push("/")
 
     }
+
+    console.log(test)
     return ( <>
         <aside class="profile-card">
         <header>
