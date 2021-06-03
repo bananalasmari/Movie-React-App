@@ -4,11 +4,18 @@ import SelectForm from './SelectForm'
 import axios from 'axios'
 import MovieCard from './MovieCard'
 
+function solve(object , array) {
+    let fee = array
+    const helper = (ea , ko) =>  ko[1] == "earlier"  ?  ea < ko[0]  :   ea > ko[0] &&   ( ea < ko[1] ||  ko[1].length > 4 )
+    for (const key in object) if (object[key] != "All") (fee = fee.filter(el => key == "history" ? helper(el[key] ,  object[key].split("-")) :el[key] == object[key])) 
+    return fee
+}
+
 export default function Allmovie() {
 
     // state 
     const [movies , setMovies] = useState([])
-    const [type , setType ] = useState("All")
+    const [types , setTypes ] = useState({typee:"All" , history : "All" , gander : "All" })
 
     useEffect(()=>{
     axios.get("https://sei12.herokuapp.com/movei/json")
@@ -27,28 +34,25 @@ export default function Allmovie() {
 
 
 // 
-console.log(type)
+console.log(types)
 
 
     return (
         <Grid xs={12} container justify="center"  >
             <h1  style={{color: '#F5CB5C' , padding :20}} > All Movie Page </h1>
             <Grid xs={12} container justify="center" >
-            <SelectForm 
+             { Object.entries(types).map(ele =>
+             <SelectForm 
+            type = {ele[0]}
             movies ={movies}
-            setType={setType}
-           
-            />
+            setType={setTypes}
+            /> ) }
+       
             </Grid>
             <Grid  justify="center" style={{marginTop: 40}} container>
-            
-       {/* .filter(ele =>  type == "All" || ele.typee == type) */}
-       {/* true  */}
-        {movies.filter(ele =>  type == "All" || ele.typee == type) 
+        {solve(types , movies) 
         .map(movie => <MovieCard  movie={movie} />)}
             </Grid>
-       
-
         </Grid>
     )
 }

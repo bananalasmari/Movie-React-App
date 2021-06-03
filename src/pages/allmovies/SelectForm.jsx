@@ -28,15 +28,13 @@ export default function SelectForm(props) {
   
     const handleChange = (event) => {
       setAge(event.target.value);
-      props.setType(event.target.value)
-
-   
+      props.setType(pre => ({...pre , [props.type] :event.target.value }))
     };
 
 
     // movies
-
-    const types =  [ ...new Set(props.movies.map(ele => ele.typee))]
+    const history = ["2020-later" , "2010-2019", "2000-2009" , "1999-earlier"]
+    const types = props.type == "history" ? history  : [ ...new Set(props.movies.map(ele => ele[props.type]))]
     return (
         <FormControl variant="filled" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>

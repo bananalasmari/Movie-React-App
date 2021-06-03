@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import {useEffect, useState} from "react"
 import Login from './pages/user/registertion/Login';
 import Register from './pages/user/registertion/Register';
-
 function App() {
 
 
