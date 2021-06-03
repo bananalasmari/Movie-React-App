@@ -3,8 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
+import {Link} from 'react-router-dom';import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -51,15 +50,17 @@ const useStyles = makeStyles((theme) => ({
 // =======================================================
 // our components 
 export default function Register() {
-  const classes = useStyles(); // for style the page 
+  // for style the page 
+  const classes = useStyles(); 
   const history= useHistory() 
-// state
-const [user , setUser] = useState({}); // {}
-const [flage , setFlage] = useState(false); //
-const [success , setSuccess] = useState(false); 
-const [message , setMessage] = useState("")
-//
-// use Effect 
+  // state
+  const [user , setUser] = useState({}); // {}
+  // for aleart styles
+  const [flage , setFlage] = useState(false); 
+  const [success , setSuccess] = useState(false); 
+  const [message , setMessage] = useState("")
+
+
 
 const userChangeHandler =  (e) => {
     let name = e.target.name
@@ -168,7 +169,7 @@ const userOnsubmitHandler = (e) => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link to="/login">
                 Already have an account? Sign in
               </Link>
             </Grid>

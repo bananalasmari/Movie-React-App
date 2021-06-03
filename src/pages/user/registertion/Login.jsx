@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from 'axios';
+import {useHistory} from "react-router-dom"
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -48,9 +49,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
-  const classes = useStyles();
 
+// start from here 
+export default function SignIn(props) {
+  const classes = useStyles();
+  const history= useHistory() 
+
+  const [user , setUser] = useState({})
+
+
+  const changeUserHandler = ({target : {name , value}}) => setUser({...user , [name] : value})
+
+ const onSubmitHandler = (e) =>{
+  e.preventDefault()
+  console.log("click")
+  axios.post("http://localhost:4000/api/v1/user/login" ,{ "email" : user.email ,"password" :user.password })
+  .then(data => {
+  
+  localStorage.setItem("token" , data.data.token)
+  props.loginFunction()
+  history.push("/")
+  }).catch(err => console.log(err.response))
+
+ }
+
+//  console.log("user" , user)
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,13 +84,14 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit ={(e) =>onSubmitHandler(e)} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
+            onChange = {(e)=>changeUserHandler(e)}
             label="Email Address"
             name="email"
             autoComplete="email"
@@ -78,16 +102,14 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            onChange = {(e)=>changeUserHandler(e)}
             name="password"
             label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
           <Button
             type="submit"
             fullWidth
@@ -104,7 +126,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/register" >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

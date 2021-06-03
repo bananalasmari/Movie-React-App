@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Footer() {
+export default function Footer(props) {
   const history = useHistory()
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -57,7 +57,7 @@ export default function Footer() {
 
       />} />
 
-     { true ?
+     { !props.isLogin ?
     <BottomNavigationAction 
       classes={classes}
       label="login" 
